@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>Διαχείριση XML συλλογής με χρήση JS AJAX</title>
+		<link rel="stylesheet" href="style.css">		
+</head>
+
+<body style="background-color: #dbfcd7;">
+<h1 style="text-align: center;">Πανεπιστήμιο Αιγαίου</h1>
+<h2 style="text-align: center;">Τμήμα Πολιτισμικής Τεχνολογίας και Επικοινωνίας</h2>
+<h3 style="text-align: center;">Μάθημα: Προγραμματισμός στον Παγκόσμιο Ιστό</h3>
+<h3 style="text-align: center;">Εργασία Ενδιάμεσης Εξέτασης: Διαχείριση XML συλλογής με χρήση JS AJAX</h3>
+<h3 style="text-align: center;">Ονοματεπώνυμο Φοιτητή: ΣΤΑΜΑΤΟΥΚΟΣ ΙΩΑΝΝΗΣ, Α.Μ.: ct22186</h3>
+<p style="text-align: center;"> Για την δημιουργεία του αρχείου XML <a href="comics.xml">comics.xml</a> χρησιμοποίησα ως πηγή τη σελίδα: <a href="https://www.cgccomics.com/news/article/10221/most-valuable-comics/">cgccomics.com</a> </p>
+
+<hr>
+<p style="text-align: center;">
+	<button id="1" type="button" class="button" onclick="loadDoc(this.getAttribute('id'))">Φόρτωση δεδομένων</button>
+	<button id="2" type="button" class="button" onclick="loadDoc(this.getAttribute('id'))">Ταξινόμηση δεδομένων κατά Σχεδιαστή</button>
+	<button id="3" type="button" class="button" onclick="loadDoc(this.getAttribute('id'))">Ταξινόμηση δεδομένων κατά Συγγραφέα</button>
+	<button id="4" type="button" class="button" onclick="loadDoc(this.getAttribute('id'))">Εμφάνιση νεότερου</button>
+	<button id="5" type="button" class="button" onclick="loadDoc(this.getAttribute('id'))">Εμφάνιση φθηνότερου</button>
+</p>
+
+<table id="comics"></table>
+</body>
+
+<script>
+
+//Χειρισμό αρχείου XML μέσω AJAX
+function loadDoc(choice) {
+	  var xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200)
+		{
+		switch(choice) {
+			case "1":
+				LoadData(this);
+				break;
+			case "2":
+				SortDataByArtist(this);
+				break;
+			case "3":
+				SortDataByWriter(this);
+				break;
+			case "4":
+				ShowLatest(this);
+				break;
+			case "5":
+				ShowCheaper(this);
+				break;				
+		  default:
+		}
+	
+		}
+	  };
+	  xhttp.open("GET", "comics.xml", true);
+	  xhttp.send();
+}
+
+//Μορφοποίηση αριθμών με 2 δεκαδικά και διαχωριστικά χιλιάδων 
+function numberWithCommas(x) {
+	return parseFloat(x).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+//Κουμπί 1: Φόρτωση δεδομένων
+function LoadData(xml) {
+  const xmlDoc = xml.responseXML;
+  const x = xmlDoc.getElementsByTagName("COMIC");
+  var table="<tr><th>A/A</th><th>Τίτλος</th><th>Σχεδιαστής</th><th>Συγγραφέας</th><th>Έτος κυκλοφορίας</th><th>Τελευταία τιμή πώλησης (€)</th></tr>";
+  for (var i = 0; i <x.length; i++) { 
+    table += 
+		"<tr><td>" + x[i].getElementsByTagName("ID")[0].childNodes[0].nodeValue + 
+		"</td><td>" + x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+		"</td><td>" + x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+		"</td><td>" + x[i].getElementsByTagName("WRITER")[0].childNodes[0].nodeValue +
+		"</td><td>" + x[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue +
+		"</td><td>" + numberWithCommas(x[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue) +
+		"</td></tr>";  
+}
+  document.getElementById("comics").innerHTML = table;
+}
+
+//Βοηθητική συνάρτηση για τη δημιουργία δισδιάστατου πίνακα 
+function fillArrayFromXML(xml) {
+  const xmlDoc = xml.responseXML;
+  const comics = xmlDoc.getElementsByTagName("COMIC");
+  var A = [];
+  for (var i = 0; i < comics.length; i++) {
+	A[i] = [];
+    A[i][0] = comics[i].getElementsByTagName("ID")[0].childNodes[0].nodeValue;
+    A[i][1] = comics[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue;
+    A[i][2] = comics[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue;
+    A[i][3] = comics[i].getElementsByTagName("WRITER")[0].childNodes[0].nodeValue;
+    A[i][4] = comics[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue;
+    A[i][5] = comics[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue;
+  }
+  return A;
+}
+
+//Κουμπί 2: Ταξινόμηση δεδομένων κατά Σχεδιαστή
+function SortDataByArtist(xml) {
+	var A = fillArrayFromXML(xml);
+	var x = A.sort(function(a,b){ return a[2] > b[2] ? 1 : -1; });
+	var table="<tr><th>A/A</th><th>Τίτλος</th><th>Σχεδιαστής</th><th>Συγγραφέας</th><th>Έτος κυκλοφορίας</th><th>Τελευταία τιμή πώλησης (€)</th></tr>";
+	for (var i = 0; i <x.length; i++) {
+		table += 
+		"<tr><td>" + x[i][0] + 
+		"</td><td>" + x[i][1] + 
+		"</td><td>" + x[i][2] +
+		"</td><td>" + x[i][3] +
+		"</td><td>" + x[i][4] +
+		"</td><td>" + numberWithCommas(x[i][5]) +
+		"</td></tr>";
+	}
+	document.getElementById("comics").innerHTML = table;
+}
+
+
+//Κουμπί 3: Ταξινόμηση δεδομένων κατά Συγγραφέα
+function SortDataByWriter(xml) {
+	var A = fillArrayFromXML(xml);
+	var x = A.sort(function(a,b){ return a[3] > b[3] ? 1 : -1; });
+	var table="<tr><th>A/A</th><th>Τίτλος</th><th>Σχεδιαστής</th><th>Συγγραφέας</th><th>Έτος κυκλοφορίας</th><th>Τελευταία τιμή πώλησης (€)</th></tr>";
+	for (var i = 0; i <x.length; i++) {
+		table += 
+		"<tr><td>" + x[i][0] + 
+		"</td><td>" + x[i][1] + 
+		"</td><td>" + x[i][2] +
+		"</td><td>" + x[i][3] +
+		"</td><td>" + x[i][4] +
+		"</td><td>" + numberWithCommas(x[i][5]) +
+		"</td></tr>";
+	}
+	document.getElementById("comics").innerHTML = table;
+}
+
+//Κουμπί 4: Εμφάνιση νεότερου βάσει της στήλης "Έτος κυκλοφορίας"
+function ShowLatest(xml) {
+	var A = fillArrayFromXML(xml);
+	var x = A.sort(function(b,a){ return a[4] - b[4] ; });
+	var table="<tr><th>A/A</th><th>Τίτλος</th><th>Σχεδιαστής</th><th>Συγγραφέας</th><th>Έτος κυκλοφορίας</th><th>Τελευταία τιμή πώλησης (€)</th></tr>";
+	table += 
+		"<tr><td>" + x[0][0] + 
+		"</td><td>" + x[0][1] + 
+		"</td><td>" + x[0][2] +
+		"</td><td>" + x[0][3] +
+		"</td><td>" + x[0][4] +
+		"</td><td>" + numberWithCommas(x[0][5]) +
+		"</td></tr>";
+	document.getElementById("comics").innerHTML = table;
+}
+
+//Κουμπί 5: Εμφάνιση φθηνότερου βάσει της στήλης "Τελευταία τιμή πώλησης (€)"
+function ShowCheaper(xml) {
+	var A = fillArrayFromXML(xml);
+	var x = A.sort(function(a,b){ return a[5] - b[5] ; });
+	var table="<tr><th>A/A</th><th>Τίτλος</th><th>Σχεδιαστής</th><th>Συγγραφέας</th><th>Έτος κυκλοφορίας</th><th>Τελευταία τιμή πώλησης (€)</th></tr>";
+	table += 
+		"<tr><td>" + x[0][0] + 
+		"</td><td>" + x[0][1] + 
+		"</td><td>" + x[0][2] +
+		"</td><td>" + x[0][3] +
+		"</td><td>" + x[0][4] +
+		"</td><td>" + numberWithCommas(x[0][5]) +
+		"</td></tr>";
+	document.getElementById("comics").innerHTML = table;
+}
+
+</script>
+</html>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<COLLECTION>
+    <COMIC>
+        <ID>1</ID>
+        <TITLE>Action Comics #1</TITLE>
+        <ARTIST>Joe Shuster</ARTIST>
+        <WRITER>Jerry Siegel</WRITER>
+        <YEAR>1938</YEAR>
+        <PRICE>15000000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>2</ID>
+        <TITLE>Detective Comics #27</TITLE>
+        <ARTIST>Bob Kane</ARTIST>
+        <WRITER>Bill Finger</WRITER>
+        <YEAR>1939</YEAR>
+        <PRICE>2300000</PRICE>
+    </COMIC>
+	
+	 <COMIC>
+        <ID>3</ID>
+        <TITLE>Superman #1</TITLE>
+        <ARTIST>Joe Shuster</ARTIST>
+        <WRITER>Jerry Siegel</WRITER>
+        <YEAR>1939</YEAR>
+        <PRICE>9000000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>4</ID>
+        <TITLE>Batman #1</TITLE>
+        <ARTIST>Bob Kane</ARTIST>
+        <WRITER>Bill Finger</WRITER>
+        <YEAR>1940</YEAR>
+        <PRICE>6000000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>5</ID>
+        <TITLE>Captain America Comics #1</TITLE>
+        <ARTIST>Jack Kirby</ARTIST>
+        <WRITER>Joe Simon</WRITER>
+        <YEAR>1941</YEAR>
+        <PRICE>3100000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>6</ID>
+        <TITLE>Marvel Comics #1</TITLE>
+        <ARTIST>Carl Burgos</ARTIST>
+        <WRITER>Al Anders</WRITER>
+        <YEAR>1939</YEAR>
+        <PRICE>2500000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>7</ID>
+        <TITLE>All-Star Comics #8</TITLE>
+        <ARTIST>H.G. Peter</ARTIST>
+        <WRITER>William Moulton Marston</WRITER>
+        <YEAR>1941</YEAR>
+        <PRICE>1600000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>8</ID>
+        <TITLE>Fantastic Four #1</TITLE>
+        <ARTIST>Jack Kirby</ARTIST>
+        <WRITER>Stan Lee</WRITER>
+        <YEAR>1961</YEAR>
+        <PRICE>2000000</PRICE>
+    </COMIC>
+
+    <COMIC>
+        <ID>9</ID>
+        <TITLE>Amazing Fantasy #15</TITLE>
+        <ARTIST>Steve Ditko</ARTIST>
+        <WRITER>Stan Lee</WRITER>
+        <YEAR>1962</YEAR>
+        <PRICE>3600000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>10</ID>
+        <TITLE>X-Men #1</TITLE>
+        <ARTIST>Jack Kirby</ARTIST>
+        <WRITER>Stan Lee</WRITER>
+        <YEAR>1963</YEAR>
+        <PRICE>850000</PRICE>
+    </COMIC>
+	
+	 <COMIC>
+        <ID>11</ID>
+        <TITLE>The Incredible Hulk #1</TITLE>
+        <ARTIST>Jack Kirby</ARTIST>
+        <WRITER>Stan Lee</WRITER>
+        <YEAR>1962</YEAR>
+        <PRICE>750000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>12</ID>
+        <TITLE>Journey Into Mystery #83</TITLE>
+        <ARTIST>Jack Kirby</ARTIST>
+        <WRITER>Stan Lee</WRITER>
+        <YEAR>1962</YEAR>
+        <PRICE>450000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>13</ID>
+        <TITLE>Tales of Suspense #39</TITLE>
+        <ARTIST>Don Heck</ARTIST>
+        <WRITER>Stan Lee</WRITER>
+        <YEAR>1963</YEAR>
+        <PRICE>1800000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>14</ID>
+        <TITLE>Daredevil #1</TITLE>
+        <ARTIST>Bill Everett</ARTIST>
+        <WRITER>Stan Lee</WRITER>
+        <YEAR>1964</YEAR>
+        <PRICE>375000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>15</ID>
+        <TITLE>The Amazing Spider-man #1</TITLE>
+        <ARTIST>Steve Ditko</ARTIST>
+        <WRITER>Stan Lee</WRITER>
+        <YEAR>1963</YEAR>
+        <PRICE>1400000</PRICE>
+    </COMIC>
+	
+	<COMIC>
+        <ID>16</ID>
+        <TITLE>Showcase #4</TITLE>
+        <ARTIST>Carmine Infantino</ARTIST>
+        <WRITER>Robert Kanigher</WRITER>
+        <YEAR>1956</YEAR>
+        <PRICE>900000</PRICE>
+    </COMIC>
+
+    <COMIC>
+        <ID>17</ID>
+        <TITLE>Pep Comics #22</TITLE>
+        <ARTIST>Bob Montana</ARTIST>
+        <WRITER>Vic Bloom</WRITER>
+        <YEAR>1941</YEAR>
+        <PRICE>350000</PRICE>
+    </COMIC>
+
+</COLLECTION>
